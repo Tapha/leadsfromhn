@@ -70,7 +70,12 @@
 	<h1>Here are your leads!</h1>
 
 	<div id="body">
-		<p></p>
+		<p><?php
+			echo $this->hn_api->get_item('8705967');
+		
+		
+		
+		?></p>
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
