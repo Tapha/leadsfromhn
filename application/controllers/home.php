@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Home extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,7 +19,10 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		//Make codeigniter hn search library
+		//make codeigniter library for hn api.
+		//run a cron job. connect to api. do a search for new passive income posts. find the relevant threads, save them. 
+		$this->load->view('home');
 	}
 }
 
