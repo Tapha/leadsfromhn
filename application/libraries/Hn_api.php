@@ -34,7 +34,14 @@ class Hn_api {
 	 * @var string
 	 **/
 	 
-	protected $after_item = ".json?print=pretty";  
+	protected $after_item = ".json?print=pretty";
+	
+	//Constructor
+	
+	public function __construct()
+     {
+                
+     }	   
 	
 	/**Items**/
 	
@@ -45,17 +52,29 @@ class Hn_api {
 	 *
 	 * @return JSON
 	 * @author Tapha
-	 **/
-	 
-	 public function __construct()
-     {
-                
-     }	 
+	 **/	 	 
 
     public function get_item($item_id = NULL)
     {
     	$client = new Client();
     	$url_string = $this->base_api."/item/".$item_id.$this->after_item;
+    	$response = $client->get($url_string);
+    	return $response;
+    }
+    
+    /**
+	 * Item Deleted
+	 *
+	 * Check if item is deleted.
+	 *
+	 * @return BOOL
+	 * @author Tapha
+	 **/	 	 
+
+    public function item_deleted($item_id = NULL)
+    {
+    	$client = new Client();
+    	$url_string = $this->base_api."/deleted/".$item_id.$this->after_item;
     	$response = $client->get($url_string);
     	return $response;
     }
