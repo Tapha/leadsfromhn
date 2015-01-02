@@ -13,6 +13,9 @@
  * @link			https://github.com/Tapha/codeigniter-hn-api
  */
 
+// Load Guzzle
+use GuzzleHttp\Client;
+
 class Hn_api {
 
 	/**
@@ -46,16 +49,15 @@ class Hn_api {
 	 
 	 public function __construct()
      {
-        // blahblah
-        $CI =& get_instance();
-
-	 	$CI->load->library('curl');
+                
      }	 
 
     public function get_item($item_id = NULL)
     {
-    	$url_string = $base_api."/item/".$item_id.$after_item;
-    	return $this->curl->simple_get($url_string);
+    	$client = new Client();
+    	$url_string = $this->base_api."/item/".$item_id.$this->after_item;
+    	$response = $client->get($url_string);
+    	return $response;
     }
 
 }
