@@ -29,7 +29,7 @@ class Hn_api {
 	/**
 	 * after api
 	 *
-	 * after api item or username string.
+	 * after api item, action or username string.
 	 *
 	 * @var string
 	 **/
@@ -43,7 +43,7 @@ class Hn_api {
                 
      }	   
 	
-	/**Items**/
+	//Items
 	
 	/**
 	 * Get Item
@@ -75,6 +75,82 @@ class Hn_api {
     {
     	$client = new Client();
     	$url_string = $this->base_api."/deleted/".$item_id.$this->after_item;
+    	$response = $client->get($url_string);
+    	return $response;
+    }
+    
+    //Users
+    
+    /**
+	 * Get User
+	 *
+	 * Get the users details.
+	 *
+	 * @return JSON
+	 * @author Tapha
+	 **/
+    
+    public function get_user($username = NULL)
+    {
+    	$client = new Client();
+    	$url_string = $this->base_api."/item/".$username.$this->after_item;
+    	$response = $client->get($url_string);
+    	return $response;
+    }
+    
+    //Top Stories
+    
+    /**
+	 * Get top stories
+	 *
+	 * Check the top stories on hn.
+	 *
+	 * @return JSON
+	 * @author Tapha
+	 **/
+    
+    public function get_top_stories()
+    {
+    	$client = new Client();
+    	$url_string = $this->base_api."/topstories";
+    	$response = $client->get($url_string);
+    	return $response;
+    }
+    
+    //Max ID
+    
+    /**
+	 * Get current Maximum ID
+	 *
+	 * Check the current max id on hn.
+	 *
+	 * @return JSON
+	 * @author Tapha
+	 **/
+    
+    public function get_max_id()
+    {
+    	$client = new Client();
+    	$url_string = $this->base_api."/maxitem";
+    	$response = $client->get($url_string);
+    	return $response;
+    }
+    
+    //Updates
+    
+    /**
+	 * Get current updates
+	 *
+	 * Check the most recent updates on hn.
+	 *
+	 * @return JSON
+	 * @author Tapha
+	 **/
+    
+    public function get_updates()
+    {
+    	$client = new Client();
+    	$url_string = $this->base_api."/updates";
     	$response = $client->get($url_string);
     	return $response;
     }
