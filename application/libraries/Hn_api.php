@@ -42,7 +42,7 @@ class Hn_api {
 	 * @var string
 	 **/
 	 
-	protected $base_search_api = "https://hn.algolia.com/api/v1/";
+	protected $base_search_api = "http://hn.algolia.com/api/v1/";
 	
 	/**
 	 * base search query api (Algolia API)
@@ -64,10 +64,11 @@ class Hn_api {
 	
 	public function __construct()
      {
-                
+         //Code here       
      }	   
 	
 	//Items
+	//Firebase API
 	
 	/**
 	 * Get Item
@@ -99,7 +100,7 @@ class Hn_api {
     public function item_deleted($item_id = NULL)
     {
     	$client = new Client();
-    	$url_string = $this->base_api."/deleted/".$item_id.$this->after_item;
+    	$url_string = $this->base_api."deleted/".$item_id.$this->after_item;
     	$response = $client->get($url_string);
     	$response = $response->json();
     	return $response;
@@ -119,7 +120,7 @@ class Hn_api {
     public function get_user($username = NULL)
     {
     	$client = new Client();
-    	$url_string = $this->base_api."/item/".$username.$this->after_item;
+    	$url_string = $this->base_api."item/".$username.$this->after_item;
     	$response = $client->get($url_string);
     	$response = $response->json();
     	return $response;
@@ -139,7 +140,7 @@ class Hn_api {
     public function get_top_stories()
     {
     	$client = new Client();
-    	$url_string = $this->base_api."/topstories";
+    	$url_string = $this->base_api."topstories".$this->after_item;
     	$response = $client->get($url_string);
     	$response = $response->json();
     	return $response;
@@ -159,7 +160,7 @@ class Hn_api {
     public function get_max_id()
     {
     	$client = new Client();
-    	$url_string = $this->base_api."/maxitem";
+    	$url_string = $this->base_api."maxitem".$this->after_item;
     	$response = $client->get($url_string);
     	$response = $response->json();
     	return $response;
@@ -179,7 +180,7 @@ class Hn_api {
     public function get_updates()
     {
     	$client = new Client();
-    	$url_string = $this->base_api."/updates";
+    	$url_string = $this->base_api."updates".$this->after_item;
     	$response = $client->get($url_string);
     	$response = $response->json();
     	return $response;
@@ -277,7 +278,7 @@ class Hn_api {
     	{
     		if ($num == 0)
     		{
-    			$url_string = $this->base_search_query_by_date_api.$arg;
+    			$url_string = $this->base_search_query_by_date_api.$arg; //Use Func Get Args. Each argument is a search string
     		}
     		else
     		{

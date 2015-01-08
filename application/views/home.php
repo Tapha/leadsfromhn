@@ -71,7 +71,10 @@
 
 	<div id="body">
 		<p><?php
-			 var_dump($this->hn_api->get_search_by_date('passive income'));
+			 $max = $this->hn_api->get_max_id();
+			 print_r($this->hn_api->get_item($max));
+			 echo "<br><br><br><br><br><br><br><br><br><br>";
+			 var_dump($this->hn_api->get_search_by_date('passive income&tags=story&hitsPerPage=500'));
 		
 		
 		
