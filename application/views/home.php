@@ -71,7 +71,7 @@
 
 	<div id="body">
 		<p><?php
-			 print_r($this->hn_api->get_search('make passive income'));
+			 var_dump($this->hn_api->get_search_by_date('passive income'));
 		
 		
 		

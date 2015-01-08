@@ -270,10 +270,24 @@ class Hn_api {
     public function get_search_by_date()
     {
     	if ( func_num_args() > 0 ){
-        	var_dump(func_get_args());
+        	$args = func_get_args();
+        	$num = 0;
+    	}
+    	foreach($args as $arg)
+    	{
+    		if ($num == 0)
+    		{
+    			$url_string = $this->base_search_query_by_date_api.$arg;
+    		}
+    		else
+    		{
+    			$url_string = $url_string.'&'.$arg;
+    		}
+    		$num++;
+    		
     	}
     	$client = new Client();
-    	$url_string = $this->base_search_query_by_date_api."";
+    	
     	$response = $client->get($url_string);
     	$response = $response->json();
     	return $response;
