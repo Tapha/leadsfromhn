@@ -19,15 +19,15 @@ use GuzzleHttp\Client;
 class Hn_api {
 
 	/**
-	 * base api
+	 * base api (Firebase API)
 	 *
 	 * @var string
 	 **/
 	 
-	protected $base_api = "https://hacker-news.firebaseio.com/v0/";
+	protected $base_api = "https://hacker-news.firebaseio.com/v0/";		
 	
 	/**
-	 * after api
+	 * after api (Firebase API)
 	 *
 	 * after api item, action or username string.
 	 *
@@ -35,6 +35,30 @@ class Hn_api {
 	 **/
 	 
 	protected $after_item = ".json?print=pretty";
+	
+	/**
+	 * base search api (Algolia API)
+	 *
+	 * @var string
+	 **/
+	 
+	protected $base_search_api = "https://hn.algolia.com/api/v1/";
+	
+	/**
+	 * base search query api (Algolia API)
+	 *
+	 * @var string
+	 **/
+	 
+	protected $base_search_query_api = "http://hn.algolia.com/api/v1/search?query=";
+	
+	/**
+	 * base search query by date api (Algolia API)
+	 *
+	 * @var string
+	 **/
+	 
+	protected $base_search_query_by_date_api = "https://hn.algolia.com/api/v1/search_by_date?query=";
 	
 	//Constructor
 	
@@ -151,6 +175,96 @@ class Hn_api {
     {
     	$client = new Client();
     	$url_string = $this->base_api."/updates";
+    	$response = $client->get($url_string);
+    	return $response;
+    }
+    
+    //Algolia API
+    
+    /**
+	 * Get search item
+	 *
+	 * Check the item details on hn.
+	 *
+	 * @return JSON
+	 * @author Tapha
+	 **/
+    
+    public function get_search_item($id)
+    {
+    	$client = new Client();
+    	$url_string = $this->base_search_api."items/:".$id;
+    	$response = $client->get($url_string);
+    	return $response;
+    }
+    
+    /**
+	 * Get search user
+	 *
+	 * Check the user details on hn.
+	 *
+	 * @return JSON
+	 * @author Tapha
+	 **/
+    
+    public function get_search_user($username)
+    {
+    	$client = new Client();
+    	$url_string = $this->base_search_api."users/:".$username;
+    	$response = $client->get($url_string);
+    	return $response;
+    }
+    
+    /**
+	 * Get search 
+	 *
+	 * Search on hn.
+	 *
+	 * @return JSON
+	 * @author Tapha
+	 **/
+    
+    public function get_search() //Use Func Get Args. Each argument is a search string
+    {
+    	if ( func_num_args() > 0 ){
+        	$args = func_get_args();
+        	$num = 0;
+    	}
+    	foreach($args as $arg)
+    	{
+    		if ($num == 0)
+    		{
+    			$url_string = $this->base_search_query_api.$arg;
+    		}
+    		else
+    		{
+    			$url_string = $url_string.'&'.$arg;
+    		}
+    		$num++;
+    		
+    	}
+    	$client = new Client();
+    	
+    	$response = $client->get($url_string);
+    	return $response;
+    }
+    
+    /**
+	 * Get search 
+	 *
+	 * Search on hn.
+	 *
+	 * @return JSON
+	 * @author Tapha
+	 **/
+    
+    public function get_search_by_date()
+    {
+    	if ( func_num_args() > 0 ){
+        	var_dump(func_get_args());
+    	}
+    	$client = new Client();
+    	$url_string = $this->base_search_query_by_date_api."";
     	$response = $client->get($url_string);
     	return $response;
     }

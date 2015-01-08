@@ -71,7 +71,7 @@
 
 	<div id="body">
 		<p><?php
-			echo $this->hn_api->get_item(8705967);
+			echo $this->hn_api->get_search('make passive income');
 		
 		
 		
