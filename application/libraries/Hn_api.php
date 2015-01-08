@@ -58,7 +58,7 @@ class Hn_api {
 	 * @var string
 	 **/
 	 
-	protected $base_search_query_by_date_api = "https://hn.algolia.com/api/v1/search_by_date?query=";
+	protected $base_search_query_by_date_api = "http://hn.algolia.com/api/v1/search_by_date?query=";
 	
 	//Constructor
 	
