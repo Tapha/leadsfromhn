@@ -18,9 +18,10 @@
 	}
 
 	a {
-		color: #003399;
-		background-color: transparent;
+		color: #333;
+		background-color: #FF9;
 		font-weight: normal;
+		text-decoration: none;
 	}
 
 	h1 {
@@ -71,12 +72,50 @@
 
 	<div id="body">
 		<p><?php
-			 $max = $this->hn_api->get_max_id();
-			 print_r($this->hn_api->get_item($max));
+			 
+			 $all1 = $this->hn_api->get_search_by_date('passive income&tags=story&hitsPerPage=500');
+			 $all = $all1['hits'];
+			 //print_r($this->hn_api->get_item($max));
 			 echo "<br><br><br><br><br><br><br><br><br><br>";
-			 var_dump($this->hn_api->get_search_by_date('passive income&tags=story&hitsPerPage=500'));
+			 
+			 //print_r($all);
+			 echo "<h1>Query: 'Passive Income'".$all1['nbHits']."</h1>";
+			 foreach ($all as $a)
+			 {
+			 	if (strlen($a['url']) > 1)
+			 	{
+			 		echo "<a href='".$a['url']."'>".$a['title']."</a>";		 					 	
+			 		echo '<hr>';
+			 	}
+			 	else
+			 	{
+			 		$url1 = "<a href='https://news.ycombinator.com/item?id=".$a['objectID']."'>".$a['title']."</a>";
+			 		echo $url1;	
+			 		echo '<hr>';			 		
+			 	}			 	
+			 }
 		
-		
+			 $all21 = $this->hn_api->get_search_by_date('recurring revenue&tags=story&hitsPerPage=500');
+			 $all2 = $all21['hits'];
+			 //print_r($this->hn_api->get_item($max));
+			 echo "<br><br><br><br><br><br><br><br><br><br>";
+			 
+			 //print_r($all);
+			 echo "<h1>Query: 'Recurring Revenue'".$all21['nbHits']."</h1>";
+			 foreach ($all2 as $a2)
+			 {
+			 	if (strlen($a['url']) > 1)
+			 	{
+			 		echo "<a href='".$a2['url']."'>".$a2['title']."</a>";		 					 	
+			 		echo '<hr>';
+			 	}
+			 	else
+			 	{
+			 		$url2 = "<a href='https://news.ycombinator.com/item?id=".$a2['objectID']."'>".$a2['title']."</a>";
+			 		echo $url2;	
+			 		echo '<hr>';			 		
+			 	}
+			 }
 		
 		?></p>
 	</div>
