@@ -83,6 +83,7 @@ class Hn_api {
     	$client = new Client();
     	$url_string = $this->base_api."/item/".$item_id.$this->after_item;
     	$response = $client->get($url_string);
+    	$response = $response->json();
     	return $response;
     }
     
@@ -100,6 +101,7 @@ class Hn_api {
     	$client = new Client();
     	$url_string = $this->base_api."/deleted/".$item_id.$this->after_item;
     	$response = $client->get($url_string);
+    	$response = $response->json();
     	return $response;
     }
     
@@ -119,6 +121,7 @@ class Hn_api {
     	$client = new Client();
     	$url_string = $this->base_api."/item/".$username.$this->after_item;
     	$response = $client->get($url_string);
+    	$response = $response->json();
     	return $response;
     }
     
@@ -138,6 +141,7 @@ class Hn_api {
     	$client = new Client();
     	$url_string = $this->base_api."/topstories";
     	$response = $client->get($url_string);
+    	$response = $response->json();
     	return $response;
     }
     
@@ -157,6 +161,7 @@ class Hn_api {
     	$client = new Client();
     	$url_string = $this->base_api."/maxitem";
     	$response = $client->get($url_string);
+    	$response = $response->json();
     	return $response;
     }
     
@@ -176,6 +181,7 @@ class Hn_api {
     	$client = new Client();
     	$url_string = $this->base_api."/updates";
     	$response = $client->get($url_string);
+    	$response = $response->json();
     	return $response;
     }
     
@@ -195,6 +201,7 @@ class Hn_api {
     	$client = new Client();
     	$url_string = $this->base_search_api."items/:".$id;
     	$response = $client->get($url_string);
+    	$response = $response->json();
     	return $response;
     }
     
@@ -212,6 +219,7 @@ class Hn_api {
     	$client = new Client();
     	$url_string = $this->base_search_api."users/:".$username;
     	$response = $client->get($url_string);
+    	$response = $response->json();
     	return $response;
     }
     
@@ -246,6 +254,7 @@ class Hn_api {
     	$client = new Client();
     	
     	$response = $client->get($url_string);
+    	$response = $response->json();
     	return $response;
     }
     
@@ -266,6 +275,7 @@ class Hn_api {
     	$client = new Client();
     	$url_string = $this->base_search_query_by_date_api."";
     	$response = $client->get($url_string);
+    	$response = $response->json();
     	return $response;
     }
 
